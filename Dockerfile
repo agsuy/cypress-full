@@ -85,3 +85,5 @@ EXPOSE 8080
 USER novnc:novnc
 ENTRYPOINT ["/bin/bash"]
 WORKDIR /home/novnc
+
+RUN yarn add cypress --dev
