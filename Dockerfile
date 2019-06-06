@@ -87,3 +87,5 @@ ENTRYPOINT ["/bin/bash"]
 WORKDIR /home/novnc
 
 RUN yarn add cypress --dev
+WORKDIR /home/novnc/e2e
+
