@@ -76,7 +76,8 @@ ENV HOME=/home/novnc \
     RUN_FLUXBOX=yes
 
 # Copy supervisor configuration
-COPY . /home/novnc/supervisor/
+COPY conf.d /home/novnc/supervisor/conf.d/
+COPY supervisord.conf /home/novnc/supervisor/
 
 # Show port for novnc
 EXPOSE 8080
@@ -84,8 +85,7 @@ EXPOSE 8080
 # Set session
 USER novnc:novnc
 ENTRYPOINT ["/bin/bash"]
+
 WORKDIR /home/novnc
-
+COPY cypress.json /home/novnc
 RUN yarn add cypress --dev
-WORKDIR /home/novnc/e2e
-
