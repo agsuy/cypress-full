@@ -91,5 +91,5 @@ USER novnc:novnc
 ENTRYPOINT ["/bin/bash"]
 
 WORKDIR /home/novnc
-COPY cypress.json /home/novnc
+#COPY cypress.json /home/novnc
 RUN yarn add cypress --dev
