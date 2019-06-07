@@ -1,4 +1,3 @@
-  
 FROM node:12.1.0
 
 # install Cypress OS dependencies
@@ -78,6 +77,11 @@ ENV HOME=/home/novnc \
 # Copy supervisor configuration
 COPY conf.d /home/novnc/supervisor/conf.d/
 COPY supervisord.conf /home/novnc/supervisor/
+COPY stream.sh /home/novnc
+
+# Set streaming to easy command
+RUN cd /home/novnc && chmod 755 stream.sh \
+   && alias stream='/home/novnc/stream.sh'
 
 # Show port for novnc
 EXPOSE 8080
