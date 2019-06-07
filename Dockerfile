@@ -80,8 +80,7 @@ COPY supervisord.conf /home/novnc/supervisor/
 COPY stream.sh /home/novnc
 
 # Set streaming to easy command
-RUN cd /home/novnc && chmod 755 stream.sh \
-   && alias stream='/home/novnc/stream.sh'
+RUN cd /home/novnc && chmod 755 stream.sh
 
 # Show port for novnc
 EXPOSE 8080
@@ -91,5 +90,5 @@ USER novnc:novnc
 ENTRYPOINT ["/bin/bash"]
 
 WORKDIR /home/novnc
-#COPY cypress.json /home/novnc
 RUN yarn add cypress --dev
+RUN /home/novnc/stream.sh
