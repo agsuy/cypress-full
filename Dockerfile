@@ -91,4 +91,3 @@ ENTRYPOINT ["/bin/bash"]
 
 WORKDIR /home/novnc
 RUN yarn add cypress --dev
-CMD ["/home/novnc/stream.sh"]
