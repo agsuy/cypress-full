@@ -87,8 +87,7 @@ EXPOSE 8080
 
 # Set session
 USER novnc:novnc
-ENTRYPOINT ["/bin/bash"]
+ENTRYPOINT ["/bin/bash", "home/novnc/stream.sh"]
 
 WORKDIR /home/novnc
 RUN yarn add cypress --dev
-ENTRYPOINT ["home/novnc/stream.sh"]
