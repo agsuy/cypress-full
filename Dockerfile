@@ -1,16 +1,6 @@
 FROM bitnami/node:12-debian-9
 
-# Snippets build
-
-#------From cypress-base docker
-
-# install Cypress OS dependencies
-# but do not install recommended libs and clean temp files
-#
-# note:
-#   Gtk2 for Cypress < 3.3.0
-#   Gtk3 for Cypress >= 3.3.0
-
+# Install Cypress dependencies
 RUN apt-get update && \
   apt-get install --no-install-recommends -qqy \
   libgtk-3-0 \
@@ -24,7 +14,7 @@ RUN apt-get update && \
   xvfb \
   && rm -rf /var/lib/apt/lists/*
 
-# Install chrome-stable snipp
+# Install chrome-stable
 RUN apt-get update && \
   apt-get install --no-install-recommends -qqy \
   apt-transport-https \
@@ -38,7 +28,6 @@ RUN wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | apt-key add
   && rm -rf /var/lib/apt/lists/* /var/cache/apt/*
 
 # Install bash, supervisor, VNC, X11  packages
-
 RUN apt-get update; \
     apt-get install -y --no-install-recommends \
       bash \
@@ -50,7 +39,6 @@ RUN apt-get update; \
       && rm -rf /var/lib/apt/lists/* /var/cache/apt/*
 
 # Add user
-
 RUN adduser --disabled-password --gecos '' novnc \
     && adduser novnc sudo \
     && echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers \
@@ -58,8 +46,9 @@ RUN adduser --disabled-password --gecos '' novnc \
     && mkdir -p /home/novnc/supervisor/pid 
 
 
-RUN git clone https://github.com/kanaka/noVNC.git /home/novnc/repo-noVNC \
-	&& git clone https://github.com/kanaka/websockify /home/novnc/repo-noVNC/utils/websockify \
+# novnc
+RUN git clone https://github.com/novnc/noVNC.git /home/novnc/repo-noVNC \
+	&& git clone https://github.com/novnc/websockify /home/novnc/repo-noVNC/utils/websockify \
 	&& apt-get purge -qqy git \ 
         apt-transport-https \
         gnupg2 \
