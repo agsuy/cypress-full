@@ -47,13 +47,23 @@ RUN adduser --disabled-password --gecos '' novnc \
 
 
 # novnc
-RUN git clone https://github.com/novnc/noVNC.git /home/novnc/repo-noVNC \
-	&& git clone https://github.com/novnc/websockify /home/novnc/repo-noVNC/utils/websockify \
+RUN git clone https://github.com/novnc/noVNC.git /home/novnc/delrepo-noVNC \
+	&& git clone https://github.com/novnc/websockify /home/novnc/delrepo-noVNC/utils/websockify \
 	&& apt-get purge -qqy git \ 
         apt-transport-https \
         gnupg2 \
-        && rm -rf /home/novnc/repo-noVNC/.git \
-	&& rm -rf /home/novnc/repo-noVNC/utils/websockify/.git \
+        && mkdir -p /home/novnc/repo-noVNC/utils/websockify \
+        && cp -ar /home/novnc/delrepo-noVNC/utils/websockify/websockify /home/novnc/repo-noVNC/utils/websockify \
+        && cp -ar /home/novnc/delrepo-noVNC/utils/websockify/include /home/novnc/repo-noVNC/utils/websockify \
+        && cp -ar /home/novnc/delrepo-noVNC/utils/websockify/run /home/novnc/repo-noVNC/utils/websockify \
+        && cp -ar /home/novnc/delrepo-noVNC/utils/websockify/websockify.py /home/novnc/repo-noVNC/utils/websockify \
+        && cp -ar /home/novnc/delrepo-noVNC/utils/launch.sh /home/novnc/repo-noVNC/utils \
+        && cp -ar /home/novnc/delrepo-noVNC/core /home/novnc/repo-noVNC \
+        && cp -ar /home/novnc/delrepo-noVNC/vendor /home/novnc/repo-noVNC \
+        && cp -ar /home/novnc/delrepo-noVNC/app /home/novnc/repo-noVNC \
+        && cp -ar /home/novnc/delrepo-noVNC/vnc.html /home/novnc/repo-noVNC \
+        && cp -ar /home/novnc/delrepo-noVNC/vnc_lite.html /home/novnc/repo-noVNC \
+        && rm -rf /home/novnc/delrepo-noVNC \
         && rm -rf /usr/local/bin/docker-entrypoint.sh
 
 RUN chown -R novnc:novnc /home/
