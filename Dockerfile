@@ -76,6 +76,7 @@ ENV HOME=/home/novnc \
     DISPLAY=:0.0 \
     DISPLAY_WIDTH=1366 \
     DISPLAY_HEIGHT=768 \
+    PORT=8080 \
     RUN_FLUXBOX=yes
 
 # Copy supervisor configuration
@@ -87,7 +88,7 @@ COPY stream.sh /usr/local/bin
 RUN cd /usr/local/bin && chmod 755 stream.sh
 
 # Show port for novnc
-EXPOSE 8080
+EXPOSE $PORT
 
 # Set session
 USER novnc:novnc
