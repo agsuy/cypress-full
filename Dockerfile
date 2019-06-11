@@ -70,7 +70,6 @@ RUN chown -R novnc:novnc /home/
 
 # Setup environment variables
 ENV HOME=/home/novnc \
-    DEBIAN_FRONTEND=noninteractive \
     LANG=en_US.UTF-8 \
     LANGUAGE=en_US.UTF-8 \
     LC_ALL=C.UTF-8 \
@@ -82,10 +81,10 @@ ENV HOME=/home/novnc \
 # Copy supervisor configuration
 COPY conf.d /home/novnc/supervisor/conf.d/
 COPY supervisord.conf /home/novnc/supervisor/
-COPY stream.sh /home/novnc
+COPY stream.sh /usr/local/bin
 
 # Set streaming to easy command
-RUN cd /home/novnc && chmod 755 stream.sh
+RUN cd /usr/local/bin && chmod 755 stream.sh
 
 # Show port for novnc
 EXPOSE 8080
@@ -94,4 +93,4 @@ EXPOSE 8080
 USER novnc:novnc
 WORKDIR /home/novnc
 RUN yarn add cypress --dev
-ENTRYPOINT ["/bin/bash"]
+ENTRYPOINT ["stream.sh"]
