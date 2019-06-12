@@ -1,11 +1,26 @@
-# Run command:
-hint: set this as an alias!
+# Cypress all in one
 
-`((sleep 1 ; printf "\n\nLoading....... Hash:") && (sleep 3 ; docker exec -d testing bash /home/novnc/stream.sh ; printf "\nCypress All in One - Ikatu R&D\n\nURL: www.(hostIP):8080/vnc.html\nHint: yarn run cypress run --browser chrome\n\n") &) && docker create --rm --name testing -it -p 8080:8080 agsqa/cypressmod:latest && docker cp cypress.json testing:/home/novnc && docker cp cypress/ testing:/home/novnc && docker start testing && docker attach testing`
+TODO: 
+- Improve docs (this)
+- Fix window manager
+- Add licence file and credit
 
-Launch super (stream.sh):
-supervisord -c /home/novnc/supervisor/supervisord.conf &
+## Intro:
 
+stub
+
+## Commands:
+
+### Build: (tag may change)
+`docker build -t agsqa/cypressmod:latest .`
+
+### Run: (tag may change)
+`docker run --rm -it -p 8080:8080 agsqa/cypressmod:latest`
+
+#### Launch super (stream.sh):
+supervisord -c /home/novnc/supervisor/supervisord.conf
+
+STUFF:
 Tag conv: agsqa/cypressmod:latest (test tag)
 
 https://github.com/Zenika/alpine-chrome
