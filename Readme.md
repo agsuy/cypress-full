@@ -1,3 +1,6 @@
+
+
+
 # Cypress all in one
 
 TODO: 
@@ -21,6 +24,13 @@ stub
 supervisord -c /home/novnc/supervisor/supervisord.conf
 
 STUFF:
+
+Copy tests:
+
+    First go to your cypress tests folder of choice
+
+With docker already running (on another terminal) docker cp . $USER-testing:/home/novnc
+
 Tag conv: agsqa/cypressmod:latest (test tag)
 
 https://github.com/Zenika/alpine-chrome
