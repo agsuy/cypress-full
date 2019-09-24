@@ -1,4 +1,4 @@
-FROM bitnami/node:12-debian-9
+FROM bitnami/node:12-debian-9-prod
 
 # Install Cypress dependencies
 RUN apt-get update && \
@@ -12,6 +12,8 @@ RUN apt-get update && \
   libxtst6 \
   xauth \
   xvfb \
+  wget \
+  git \
   && rm -rf /var/lib/apt/lists/*
 
 # Install chrome-stable
@@ -74,8 +76,8 @@ ENV HOME=/home/novnc \
     LANGUAGE=en_US.UTF-8 \
     LC_ALL=C.UTF-8 \
     DISPLAY=:0.0 \
-    DISPLAY_WIDTH=1366 \
-    DISPLAY_HEIGHT=768 \
+    DISPLAY_WIDTH=1920 \
+    DISPLAY_HEIGHT=1080 \
     PORT=8080 \
     RUN_FLUXBOX=yes
 
